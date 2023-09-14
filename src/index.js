@@ -1,6 +1,13 @@
-function doubleLetter(str) {
-    return str.replace(/./g, '$&$&');
+function reverseArray(arr) {
+  const reversedArr = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    reversedArr.push(arr[i]);
   }
-  const inputString = prompt('Введіть рядок:');
-  const doubledString = doubleLetter(inputString);
-  console.log(doubledString);
+  return reversedArr;
+}
+
+const input = prompt("Введіть елементи масиву, розділені комою (,)");
+const originalArray = input.split(',').map(item => parseInt(item.trim()));
+
+const reversedArray = reverseArray(originalArray);
+console.log(reversedArray);
