@@ -1,13 +1,16 @@
-function reverseArray(arr) {
-  const reversedArr = [];
-  for (let i = arr.length - 1; i >= 0; i--) {
-    reversedArr.push(arr[i]);
+function capitalizeStrings(arr) {
+  const capitalizedArray = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const word = arr[i];
+    const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    capitalizedArray.push(capitalizedWord);
   }
-  return reversedArr;
+
+  return capitalizedArray;
 }
 
-const input = prompt("Введіть елементи масиву, розділені комою (,)");
-const originalArray = input.split(',').map(item => parseInt(item.trim()));
+const words = ["apple", "banaNA", "kiWi", "ORANGE"];
+const result = capitalizeStrings(words);
+console.log(result);
 
-const reversedArray = reverseArray(originalArray);
-console.log(reversedArray);
