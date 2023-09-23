@@ -17,7 +17,7 @@ function filterPrimes(arr) {
 
 const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 const primeNumbers = filterPrimes(numbers);
-console.log(primeNumbers); // [2, 3, 5, 7]
+console.log(primeNumbers); 
 
 
 
