@@ -1,16 +1,22 @@
-function capitalizeStrings(arr) {
-  const capitalizedArray = [];
+function isPrime(num) {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
 
-  for (let i = 0; i < arr.length; i++) {
-    const word = arr[i];
-    const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    capitalizedArray.push(capitalizedWord);
+  if (num % 2 === 0 || num % 3 === 0) return false;
+
+  for (let i = 5; i * i <= num; i += 6) {
+    if (num % i === 0 || num % (i + 2) === 0) return false;
   }
 
-  return capitalizedArray;
+  return true;
 }
 
-const words = ["apple", "banaNA", "kiWi", "ORANGE"];
-const result = capitalizeStrings(words);
-console.log(result);
+function filterPrimes(arr) {
+  return arr.filter(num => isPrime(num));
+}
+
+const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+const primeNumbers = filterPrimes(numbers);
+console.log(primeNumbers); 
+
 
