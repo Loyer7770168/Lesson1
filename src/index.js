@@ -1,22 +1,31 @@
-function isPrime(num) {
-  if (num <= 1) return false;
-  if (num <= 3) return true;
+function memoize(fn) {
+  const cache = new Map();
 
-  if (num % 2 === 0 || num % 3 === 0) return false;
+  return function (...args) {
+    const key = JSON.stringify(args);
 
-  for (let i = 5; i * i <= num; i += 6) {
-    if (num % i === 0 || num % (i + 2) === 0) return false;
-  }
-
-  return true;
+    if (cache.has(key)) {
+      console.log(`Збережений результат для аргументів: ${args}`);
+      return cache.get(key);
+    } else {
+      console.log(`Обчислення та збереження результату для аргументів: ${args}`);
+      const result = fn(...args);
+      cache.set(key, result);
+      return result;
+    }
+  };
 }
 
-function filterPrimes(arr) {
-  return arr.filter(num => isPrime(num));
+function add(a, b) {
+  return a + b;
 }
 
-const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-const primeNumbers = filterPrimes(numbers);
-console.log(primeNumbers); 
+const memoizedAdd = memoize(add);
+
+console.log(memoizedAdd(2, 3)); 
+console.log(memoizedAdd(2, 3)); 
+console.log(memoizedAdd(4, 5)); 
+console.log(memoizedAdd(4, 5)); 
+ 
 
 
