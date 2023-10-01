@@ -1,14 +1,17 @@
-function summarize(num) {
-  num = typeof num === 'number' ? num : 1;
-
-  return function (x) {
-    return num + (typeof x === 'number' ? x : 0);
+function logArguments(fn) {
+  return function (...args) {
+    console.log('Аргументи функції:', args);
+    return fn(...args);
   };
 }
 
-const addFive = summarize(5);
-console.log(addFive(3)); 
-console.log(addFive());  
+function add(a, b) {
+  return a + b;
+}
+
+const decoratedAdd = logArguments(add);
+
+console.log(decoratedAdd(2, 3));
 
 
 
