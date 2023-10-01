@@ -1,23 +1,18 @@
-function isPrime(num) {
-  if (num <= 1) return false;
-  if (num <= 3) return true;
-
-  if (num % 2 === 0 || num % 3 === 0) return false;
-
-  for (let i = 5; i * i <= num; i += 6) {
-    if (num % i === 0 || num % (i + 2) === 0) return false;
-  }
-
-  return true;
+function logArguments(fn) {
+  return function (...args) {
+    console.log('Аргументи функції:', args);
+    return fn(...args);
+  };
 }
 
-function filterPrimes(arr) {
-  return arr.filter(isPrime);
+function add(a, b) {
+  return a + b;
 }
 
-const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-const primeNumbers = filterPrimes(numbers);
-console.log(primeNumbers); 
+const decoratedAdd = logArguments(add);
+
+console.log(decoratedAdd(2, 3));
+
 
 
 
