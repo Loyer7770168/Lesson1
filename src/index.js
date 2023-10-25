@@ -1,20 +1,20 @@
-function randomDelayPrint(message) {
-  function printLetter(index) {
-    if (index < message.length) {
-      // Генеруємо випадкову затримку від 0 до 1000 мілісекунд (1 секунда)
-      const randomDelay = Math.floor(Math.random() * 1000);
-      
-      setTimeout(function () {
-        console.log(message[index]);
-        printLetter(index + 1);
-      }, randomDelay);
-    }
-  }
-
-  printLetter(0);
+function sumArrayPromise(arr) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Array.isArray(arr) && arr.length > 0) {
+        const sum = arr.reduce((acc, current) => acc + current, 0);
+        resolve(sum);
+      } else {
+        reject("Масив порожній або не є масивом чисел.");
+      }
+    }, 3000);
+  });
 }
 
-randomDelayPrint("Hello");
+sumArrayPromise([1, 2, 3, 4, 5])
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+
 
 
 
